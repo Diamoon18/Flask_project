@@ -1,0 +1,32 @@
+<!--*******************************************************************************
+ * Autorskie Prawa Majątkowe - Moose spółka z ograniczoną odpowiedzialnością
+ *
+ * Copyright 2021 Moose spółka z ograniczoną odpowiedzialnością
+ ******************************************************************************/-->
+{% extends "base.html" %}
+{% block title %}<title>History</title>{% endblock %}
+{% block pattern %}{% endblock %}
+{% block content %}
+<div class="history">
+  <h2>History of generated charts</h2>
+  <hr>
+  <div class="list-group">
+  {% for chart in user.charts %}
+  <a href="/history/{{chart.id_chart}}" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ chart.sensor_name }}</h5>
+      <small>{{ chart.date[0:chart.date.index('.')]}}</small>
+    </div>
+      {% for param in chart.params %}
+        <p class="mb-1">Parameters: {{ param.lower_limit }}, {{ param.upper_limit }}, {{ param.measurement_frequency }},
+        {{ param.default_measurement_value }}, {{ param.default_measurement_time }}</p>
+      {% endfor %}
+    <small>{{ chart.method }}</small>
+  </a>
+  {% endfor %}
+  </div>
+</div>
+<script type="text/javascript">
+
+</script>
+{% endblock %}

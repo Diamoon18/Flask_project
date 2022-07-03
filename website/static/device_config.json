@@ -1,0 +1,83 @@
+{
+  "devices": [
+    {
+      "type": "Distance",
+      "id": "1",
+      "name": "Distance",
+      "min_value": "1",
+      "max_value": "2000",
+      "params": {
+        "lower_limit": "10",
+        "upper_limit": "80",
+        "measurement_frequency": "1",
+        "default_measurement_value": "50",
+        "default_measurement_time": "100"
+      }
+    },
+    {
+      "type": "Temperature - Celcius Degrees",
+      "id": "2",
+      "name": "Temperature",
+      "min_value": "1",
+      "max_value": "800",
+      "params": {
+        "lower_limit": "2",
+        "upper_limit": "80",
+        "measurement_frequency": "1",
+        "default_measurement_time": "100"
+      }
+    },
+    {
+      "type": "RPM - 1/min",
+      "id": "3",
+      "name": "RPM",
+      "min_value": "0",
+      "max_value": "16000",
+      "params": {
+        "lower_limit": "2",
+        "upper_limit": "4000",
+        "measurement_frequency": "2",
+        "default_measurement_value": "0",
+        "default_measurement_time": "100"
+      }
+    },
+    {
+      "type": "Current - Amperes",
+      "id": "4",
+      "name": "Current",
+      "min_value": "0",
+      "max_value": "1000",
+      "params": {
+        "lower_limit": "2",
+        "upper_limit": "20",
+        "measurement_frequency": "1",
+        "default_measurement_value": "0",
+        "default_measurement_time": "100"
+      }
+    },
+    {
+      "type": "Pressure - Pa",
+      "id": "5",
+      "name": "Pressure 2",
+      "min_value": "0",
+      "max_value": "200000",
+      "params": {
+        "lower_limit": "30000",
+        "upper_limit": "110000",
+        "measurement_frequency": "20",
+        "default_measurement_value": "100000",
+        "default_measurement_time": "100"
+      }
+    }
+  ],
+  "methods" : [
+    {
+      "name" : "Fill in the form",
+      "id" : "1"
+    },
+    {
+      "name" : "Load data from .csv file",
+      "id" : "2"
+    }
+  ]
+}

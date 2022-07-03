@@ -1,0 +1,32 @@
+<!--*******************************************************************************
+ * Autorskie Prawa Majątkowe - Moose spółka z ograniczoną odpowiedzialnością
+ *
+ * Copyright 2021 Moose spółka z ograniczoną odpowiedzialnością
+ ******************************************************************************/-->
+{% extends "base.html" %}
+{% block title %}<title>Sensors</title>{% endblock %}
+{% block pattern %}{% endblock %}
+{% block content %}
+    <div class="start">
+        <h2>List of available sensors</h2>
+        <hr>
+        <form role="form" method="POST">
+            <div class="form-group">
+              <label for="sensor_1">Please select one sensor:</label>
+              <select class="form-control" name="sensor_1" id="sensor_1">
+                  {% for name in names %}
+                        <option>{{ name }}</option>
+                  {% endfor %}
+              </select>
+              <label for="chose">Please select one method:</label>
+              <select class="form-control" id="chose" name="chose">
+                  {% for method in methods %}
+                        <option>{{ method }}</option>
+                  {% endfor %}
+              </select>
+            </div>
+            <br />
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}

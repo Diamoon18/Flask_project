@@ -1,0 +1,155 @@
+<!--*******************************************************************************
+ * Autorskie Prawa Majątkowe - Moose spółka z ograniczoną odpowiedzialnością
+ *
+ * Copyright 2021 Moose spółka z ograniczoną odpowiedzialnością
+ ******************************************************************************/-->
+{% block plot %}
+<div class="col-xs-10 col-sm-6 col-md-6">
+    <div class="card card-style mb-2">
+        <div class="card-body">
+            <div class="chart-container">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="csv()" style="margin-left:40px">Download file .csv</button>
+</div>
+
+<div class="position-absolute top-15 start-0 form" style="color:#c8d8e4;margin-left:40px">
+        <form method="POST" >
+        <h3>Komunikacja z MQTT</h3>
+                <div class="form-group" >
+                  <label>IP:</label>
+                  <input
+                    type="text"
+                    value="127.0.0.1"
+                    required="True"
+                    class="form-control"
+                    id="ip"
+                    name="ip"
+                  />
+                    <label>Port:</label>
+                  <input
+                    type="text"
+                    value="1883"
+                    required="True"
+                    class="form-control"
+                    id="port"
+                    name="port"
+                  />
+                    <label>Topic:</label>
+                  <input
+                    type="text"
+                    value="newTest"
+                    required="True"
+                    class="form-control"
+                    id="topic"
+                    name="topic"
+                  />
+                </div>
+            <br />
+            <input type="hidden" name="hidden" value="{{data[1]}}" />
+            <button type="submit" name="button_identifier" value="mqtt" id="mqtt" class="btn btn-primary" >Send to MQTT</button>
+        </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+          crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script>
+var xValues = {{data[0]|safe}};
+var yValues = {{data[1]|safe}};
+
+var today = new Date();
+var date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
+var time = today.getHours() + "." + today.getMinutes() + "." + today.getSeconds();
+var dateTime = date+'/'+time;
+
+if({{ chartType }} == 1){
+var xAxName = "Time";
+var yAxName = "Distance";
+}
+
+else if({{ chartType }} == 2){
+var xAxName = "Time";
+var yAxName = "Temperature";
+}
+          var myChart = new Chart("myChart", {
+              type: 'line',
+              data: {
+              labels: xValues,
+              datasets: [{
+                  fill: false,
+                  tension: 0.1,
+                  pointRadius: 2,
+                  backgroundColor: "rgba(255, 255, 255)",
+                  borderColor: "rgba(82, 171, 152)",
+                  data: yValues
+              }]
+            },
+              options: {
+              legend: {display: false},
+              scales: {
+                yAxes: [{
+                    gridLines: {
+                        display: false,
+                        color: "white"
+                    },
+                    ticks: {min: {{min}}, max: {{max}}, fontColor:"rgba(82, 171, 152)"},
+                    scaleLabel: {
+                      display: true,
+                      labelString: yAxName,
+                      fontColor: "white",
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        color: "white"
+                    },
+                    ticks: {
+                        maxTicksLimit: 50,
+                        callback: function(value, index, values) {
+                            return Math.floor(value);
+                        },
+                        fontColor:"rgba(82, 171, 152)"
+                    },
+                    scaleLabel: {
+                      display: true,
+                      labelString: xAxName,
+                      fontColor: "white"
+                    }
+                }]
+              }
+            }
+          });
+
+function csv(){
+var A = [[xAxName,yAxName]];
+
+var Xvalues = {{data[0]|safe}}
+var Yvalues = {{data[1]|safe}}
+
+for(var j=0; j<Xvalues.length; j++){
+    A.push([Xvalues[j], Yvalues[j]]);
+}
+
+var csvRows = [];
+
+for(var i=0, l=A.length; i<l; ++i){
+    csvRows.push(A[i].join(','));
+}
+
+var csvString = csvRows.join("\n");
+var a         = document.createElement('a');
+a.href        = 'data:attachment/csv,' +  encodeURIComponent(csvString);
+a.target      = '_blank';
+a.download    = 'data_' + yAxName + '_' + dateTime + '.csv';
+
+document.body.appendChild(a);
+a.click();
+}
+</script>
+{% endblock %}

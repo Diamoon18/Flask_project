@@ -1,0 +1,100 @@
+.container {
+    position: relative;
+    color:#c8d8e4;
+}
+
+.pat {
+    width:100%;
+    margin-top:54px;
+    height:95%;
+    background: linear-gradient(
+        to right,
+        #c8d8e4 0%,
+        #c8d8e4 60%,
+        #2b6777 60%,
+        #2b6777 100%
+     )
+}
+.art {
+    background-image:url('../images/lamp.jpg');
+    margin-left:80px;
+    margin-top:40px;
+    width:1280px;
+    height:800px;
+}
+
+.pattern {
+    background-color:"#c8d8e4";
+    width:100px;
+    height:100px;
+    margin-left:100px;
+    margin-top:50px;
+}
+
+
+.container .start {
+    width: 400px;
+    margin-top:5%;
+    margin-left:-160px
+}
+
+.container .login {
+    width: 400px;
+    margin-top:18%;
+    margin-left:40%
+}
+
+.container .signup {
+    width: 400px;
+    margin-top:15%;
+    margin-left:40%
+}
+
+.container .history {
+    margin-top:5%;
+    margin-left:-160px
+}
+
+.plot {
+    margin-left:6%
+}
+
+.form {
+    width: 390px;
+    display: inline-block;
+    color:#c8d8e4;
+}
+
+.chart {
+    float: left;
+    margin-left:2%;
+    width: 70%;
+    display: inline-block;
+}
+
+.chart iframe {
+    width: 100%;
+    height: 1000px;
+}
+
+.btn-primary {
+    background-color: #52ab98;
+    color:#FFF;
+    border-color: #52ab98;
+}
+
+.btn-primary:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+    background-color: #c8d8e4;
+    color:black;
+    border-color: #c8d8e4;
+}
+
+btn-outline-success {
+    color:#FFF;
+    border-color: #52ab98;
+}
+
+.btn-outline-success:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+    background-color: #52ab98;
+    border-color: #52ab98;
+}
